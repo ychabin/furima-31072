@@ -20,6 +20,7 @@ has_many purchases
 | ------------------ | ---------- | ------------------ |
 | name               | string     | null: false        |
 | text               | text       | null: false        |
+| price_id           | integer    | null: false        |
 | condition_id       | integer    | null: false        |
 | shipping_cost_id   | integer    | null: false        |
 | shipment_source_id | integer    | null: false        |
@@ -28,6 +29,7 @@ has_many purchases
 | user               | references | foreign_key: true  |
 
 belongs_to user
+has_one purchase
 
 ## purchases テーブル
 
@@ -35,7 +37,9 @@ belongs_to user
 | ----------- | ---------- | ----------------- |
 | user        | references | foreign_key: true |
 | item        | references | foreign_key: true |
+| address     | references | foreign_key: true |
 
+belongs_to user
 belongs_to item
 has_one address
 
@@ -43,11 +47,11 @@ has_one address
 
 | Column        | Type       | Options     |
 | ------------- | ---------- | ----------- |
-| post_num      | text       | null: false |
+| post_num      | string     | null: false |
 | prefecture_id | integer    | null: false |
 | city          | string     | null: false |
 | address       | string     | null: false |
-| building_name | string     | null: false | 
+| building_name | string     |             |
 | phone_num     | string     | null: false |
 
 belongs_to purchase
