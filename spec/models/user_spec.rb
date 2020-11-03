@@ -37,7 +37,7 @@ describe User do
       it 'emailに@が含まれていないとユーザー登録できない' do
         @user.email = 'user_example.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordが空では登録できない' do
         @user.password = ''
@@ -56,59 +56,59 @@ describe User do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordが半角数字のみだとユーザー登録できない' do
-        @user.password = "000000"
+        @user.password = '000000'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordが半角英字のみだとユーザー登録できない' do
-        @user.password = "aaaaaa"
+        @user.password = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'family_nameが空だとユーザー登録できない' do
-        @user.family_name = ""
+        @user.family_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name can't be blank", "Family name is invalid. Input full-width katakana characters.")
+        expect(@user.errors.full_messages).to include("Family name can't be blank", 'Family name is invalid. Input full-width katakana characters.')
       end
       it 'nameが空だとユーザー登録できない' do
-        @user.name = ""
+        @user.name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Name can't be blank", "Name is invalid. Input full-width katakana characters.")
+        expect(@user.errors.full_messages).to include("Name can't be blank", 'Name is invalid. Input full-width katakana characters.')
       end
       it 'jp_family_nameが空だとユーザー登録できない' do
-        @user.jp_family_name = ""
+        @user.jp_family_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Jp family name can't be blank", "Jp family name is invalid. Input full-width characters.")
+        expect(@user.errors.full_messages).to include("Jp family name can't be blank", 'Jp family name is invalid. Input full-width characters.')
       end
       it 'jp_nameが空だとユーザー登録できない' do
-        @user.jp_name = ""
+        @user.jp_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Jp name can't be blank", "Jp name is invalid. Input full-width characters.")
+        expect(@user.errors.full_messages).to include("Jp name can't be blank", 'Jp name is invalid. Input full-width characters.')
       end
       it 'birth_dayが空だとユーザー登録できない' do
-        @user.birth_day = ""
+        @user.birth_day = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth day can't be blank")
       end
       it 'family_nameが全角（カタカナ）以外だとユーザー登録できない' do
-        @user.family_name ="name"
+        @user.family_name = 'name'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name is invalid. Input full-width katakana characters.")
+        expect(@user.errors.full_messages).to include('Family name is invalid. Input full-width katakana characters.')
       end
       it 'nameが全角（カタカナ）以外だとユーザー登録できない' do
-        @user.name = "name"
+        @user.name = 'name'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Name is invalid. Input full-width katakana characters.")
+        expect(@user.errors.full_messages).to include('Name is invalid. Input full-width katakana characters.')
       end
       it 'jp_family_nameが全角（漢字）以外だとユーザー登録できない' do
-        @user.jp_family_name = "yamada"
+        @user.jp_family_name = 'yamada'
         @user.valid?
-        expect(@user.errors.full_messages).to include( "Jp family name is invalid. Input full-width characters.")
+        expect(@user.errors.full_messages).to include('Jp family name is invalid. Input full-width characters.')
       end
       it 'jp_nameが全角（漢字）以外だとユーザー登録できない' do
-        @user.jp_name = "tarou"
+        @user.jp_name = 'tarou'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Jp name is invalid. Input full-width characters.")
+        expect(@user.errors.full_messages).to include('Jp name is invalid. Input full-width characters.')
       end
     end
   end
