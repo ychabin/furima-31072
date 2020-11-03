@@ -4,7 +4,7 @@
 | ------------------ | ------ | ----------- |
 | email              | string | null: false |
 | encrypted_password | string | null: false |
-| name               | string | null: false |
+| nickname           | string | null: false |
 | jp_family_name     | string | null: false |
 | jp_name            | string | null: false |
 | family_name        | string | null: false |
