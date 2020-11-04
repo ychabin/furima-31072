@@ -66,14 +66,13 @@ describe Item do
       it '商品画像がないと出品できない' do
         @item.image = nil
         @item.valid?
-        binding.pry
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it 'priceが半角数字以外だと出品できない' do
         @item.price = '９９９'
         @item.valid?
-        
-        expect(@item.errors.full_messages).to include()
+        binding.pry
+        expect(@item.errors.full_messages).to include("Price 半角数字での入力が必須であること", "Price is not included in the list")
       end
       
       
