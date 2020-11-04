@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   belongs_to :category, :condition, :shipment_source, :shipping_cost, :shipping_day
-  
+
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :condition_id
