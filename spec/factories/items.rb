@@ -9,5 +9,9 @@ FactoryBot.define do
     shipping_days_id { '2' }
     price { 1000 }
     user
+    
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/kirin.jpeg'), filename: 'kirin.jpeg')
+    end
   end
 end

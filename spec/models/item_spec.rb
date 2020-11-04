@@ -6,7 +6,7 @@ describe Item do
 
   describe '商品出品機能' do
     context '商品の出品がうまくいくとき' do
-      it 'nameとcategory_idとcondition_id、shipment_source_id、shipping＿cost、shipping_day、priceが存在すれば出品できる' do
+      it 'nameとcategory_idとcondition_id、shipment_source_id、shipping＿cost、shipping_day、price,imageが存在すれば出品できる' do
         expect(@item).to be_valid
       end
     end
@@ -25,44 +25,59 @@ describe Item do
       it 'category_idが空のとき' do
         @item.category_id = '1'
         @item.valid?
-
         expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it 'condition_idが空のとき' do
         @item.condition_id = '1'
         @item.valid?
-
         expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
       it 'shipment_source_idが空のとき' do
         @item.shipment_source_id = '1'
         @item.valid?
-
         expect(@item.errors.full_messages).to include('Shipment source must be other than 1')
       end
       it 'shipping_cost_idが空のとき' do
         @item.shipping_cost_id = '1'
         @item.valid?
-
         expect(@item.errors.full_messages).to include('Shipping cost must be other than 1')
       end
       it 'shipping_days_idが空のとき' do
         @item.shipping_days_id = '1'
         @item.valid?
-
         expect(@item.errors.full_messages).to include('Shipping days must be other than 1')
       end
-      it 'priceが半角数字以外だと出品できない' do
-        @item.price = '　　　'
+      
+      it 'priceが空だと出品できない' do
+        @item.price = ""
         @item.valid?
-
-        expect(@item.errors.full_messages).to include("Price can't be blank", 'Price 半角数字での入力が必須であること')
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it 'priceが300から9999999以外だと出品できない' do
-        @item.price = 100
+      it 'priceが299だと出品できない' do
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
+      it 'priceが10000000だと出品できない' do
+          @item.price = 10000000
+          @item.valid?
+          expect(@item.errors.full_messages).to include('Price is not included in the list')
+      end
+      it '商品画像がないと出品できない' do
+        @item.image = nil
+        @item.valid?
+        binding.pry
+        expect(@item.errors.full_messages).to include()
+      end
+      it 'priceが半角数字以外だと出品できない' do
+        @item.price = '９９９'
+        @item.valid?
+        
+        expect(@item.errors.full_messages).to include()
+      end
+      
+      
+      
     end
   end
 end

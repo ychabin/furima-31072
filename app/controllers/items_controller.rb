@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :new]
+  before_action :move_to_new,   except: :index
 
   def index
     @items = Item.all
@@ -7,7 +8,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def create
@@ -29,6 +29,14 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index unless user_signed_in?
+    unless user_signed_in?
+      redirect_to action: :index 
+    end
+  end
+
+  def move_to_new
+    unless user_signed_in?
+      redirect_to new_user_session_path 
+    end
   end
 end
