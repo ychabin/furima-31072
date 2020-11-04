@@ -47,9 +47,9 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping days must be other than 1')
       end
-      
+
       it 'priceが空だと出品できない' do
-        @item.price = ""
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
@@ -59,9 +59,9 @@ describe Item do
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it 'priceが10000000だと出品できない' do
-          @item.price = 10000000
-          @item.valid?
-          expect(@item.errors.full_messages).to include('Price is not included in the list')
+        @item.price = 10_000_000
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it '商品画像がないと出品できない' do
         @item.image = nil
@@ -71,12 +71,8 @@ describe Item do
       it 'priceが半角数字以外だと出品できない' do
         @item.price = '９９９'
         @item.valid?
-        binding.pry
-        expect(@item.errors.full_messages).to include("Price 半角数字での入力が必須であること", "Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price 半角数字での入力が必須であること', 'Price is not included in the list')
       end
-      
-      
-      
     end
   end
 end
