@@ -42,8 +42,8 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping cost must be other than 1')
       end
-      it 'shipping_days_idが空のとき' do
-        @item.shipping_days_id = '1'
+      it 'shipping_day_idが空のとき' do
+        @item.shipping_day_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping days must be other than 1')
       end

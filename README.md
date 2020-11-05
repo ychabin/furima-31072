@@ -24,7 +24,7 @@ has_many purchases
 | condition_id       | integer    | null: false        |
 | shipping_cost_id   | integer    | null: false        |
 | shipment_source_id | integer    | null: false        |
-| shipping_days_id   | integer    | null: false        |
+| shipping_day_id    | integer    | null: false        |
 | category_id        | integer    | null: false        |
 | user               | references | foreign_key: true  |
 

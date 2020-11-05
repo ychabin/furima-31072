@@ -2,14 +2,18 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
   has_one_attached :image
-  belongs_to :category, :condition, :shipment_source, :shipping_cost, :shipping_day
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :shipment_source
+  belongs_to :shipping_cost
+  belongs_to :shipping_day
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :condition_id
     validates :shipment_source_id
     validates :shipping_cost_id
-    validates :shipping_days_id
+    validates :shipping_day_id
   end
   with_options presence: true do
     validates :name
