@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
   has_one_attached :image
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category, :condition, :shipment_source, :shipping_cost, :shipping_day
-  
+
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :condition_id
