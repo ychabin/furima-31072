@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :new]
-  before_action :move_to_new,   except: :index
+  before_action :move_to_index, except: [:index, :new, :show]
 
   def index
     @items = Item.includes(:user).order(created_at: :desc)
@@ -8,6 +7,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def create
@@ -19,20 +19,20 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   def destroy
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :condition_id, :shipment_source_id, :shipping_cost_id, :shipping_days_id, :image, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :text, :category_id, :condition_id, :shipment_source_id, :shipping_cost_id, :shipping_day_id, :image, :price).merge(user_id: current_user.id)
   end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
-  end
-
-  def move_to_new
-    redirect_to new_user_session_path unless user_signed_in?
   end
 end
