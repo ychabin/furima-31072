@@ -8,6 +8,7 @@ class OrderAddress
     validates :city
     validates :house_num
     validates :phone_num
+    validates :token
   end
   validates :post_num,       format: { with: /\A\d{3}-\d{4}\z/ }
   validates :phone_num,      length: { maximum: 11 }
