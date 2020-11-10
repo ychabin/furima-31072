@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipment_source
   belongs_to :shipping_cost
   belongs_to :shipping_day
+  has_one :order
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
