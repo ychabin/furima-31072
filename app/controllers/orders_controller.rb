@@ -2,19 +2,14 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    @order = @item
-    redirect_to root_path unless @item.order.nil?
+    return redirect_to root_path if !user_signed_in? || current_user.id == @item.user_id 
+    @order = OrderAddress.new
   end
 
   def create
     @order = OrderAddress.new(order_address_params)
     if @order.valid?
-      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: order_address_params[:token],
-        currency: 'jpy'
-      )
+      pay_item
       @order.save
       redirect_to root_path
     else
@@ -31,4 +26,13 @@ class OrdersController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
+
+  def pay_item
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: order_address_params[:token],
+        currency: 'jpy'
+      )
+    end
 end
