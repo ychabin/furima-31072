@@ -12,7 +12,7 @@
 | birth_day          | date   | null: false |
 
 has_many items
-has_many purchases
+has_many orders
 
 ## items テーブル
 
@@ -29,9 +29,9 @@ has_many purchases
 | user               | references | foreign_key: true  |
 
 belongs_to user
-has_one purchase
+has_one order
 
-## purchases テーブル
+## orders テーブル
 
 | Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
@@ -49,9 +49,9 @@ has_one address
 | post_num      | string     | null: false       |
 | prefecture_id | integer    | null: false       |
 | city          | string     | null: false       |
-| address       | string     | null: false       |
+| house_num     | string     | null: false       |
 | building_name | string     |                   |
 | phone_num     | string     | null: false       |
-| purchase      | references | foreign_key: true |
+| order         | references | foreign_key: true |
 
-belongs_to purchase
+belongs_to order
